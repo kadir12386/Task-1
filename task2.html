@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .card_box {
+        background-color: rgb(255, 255, 255);
+        box-shadow: -2px -2px 20px #111;
+        border-radius: 10px;
+        height: 350px;
+        width: 610px;
+      }
+      .container {
+        display: flex;
+        align-items: center;
+        padding: 30px;
+      }
+      .container img {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+      }
+      .content {
+        margin-left: 20px;
+        background-color: rgb(255, 255, 255);
+        padding: 20px;
+      }
+      .card_box .button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      button {
+        background-color: rgb(185, 3, 88);
+        color: #fff;
+        padding: 10px 50px;
+        outline: none;
+        border: none;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card_box">
+      <div class="container">
+        <img
+          id="image"
+          src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Profile"
+        />
+        <div class="content">
+          <p id="name">Title: Teddy</p>
+          <p id="email">Email: Teddy@19gamil.com</p>
+          <p id="date_of_birth">D.O.B: 19:05:1997</p>
+        </div>
+      </div>
+      <div class="button">
+        <button onclick="displayImage()">Click here</button>
+      </div>
+    </div>
+
+    <script>
+      async function displayImage() {
+        const api = await fetch("https://randomuser.me/api/");
+        const data = await api.json();
+
+        const image = document.getElementById("image");
+        const name = document.getElementById("name");
+        const email = document.getElementById("email");
+        const date_of_birth = document.getElementById("date_of_birth");
+
+        image.setAttribute("src", `${data.results[0].picture.medium}`);
+        name.innerText = `Title :${data.results[0].name.first}`;
+        email.innerText = `Email :${data.results[0].email}`;
+      }
+    </script>
+  </body>
+</html>
